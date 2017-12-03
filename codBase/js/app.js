@@ -209,6 +209,34 @@ var calculadora = {
         mas.setAttribute("style", "transform:scale(1.0)")
       })
   },
+
+numero : function(n){
+  var num = display.innerHTML
+  var self = this
+  var limite = 8
+
+  if(num.indexOf(".") != -1){
+      if (n =="."){
+          n = ""
+      }
+      limite = 9
+     }
+
+     if (num=="0" && n != "."){
+         num = ""
+     }
+     if (operandos.operador.length > 0){
+         num = ""
+         operandos.operadorAnt = operandos.operador
+         operandos.numAnt = parseFloat(display.innerHTML)
+         operandos.operador = ""
+     }
+     if (display.innerHTML.length < limite) {
+         display.innerHTML = num + n
+     }
+},
+
+
 }
 
 calculadora.init()
