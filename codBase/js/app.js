@@ -245,6 +245,151 @@ var calculadora = {
            display.innerHTML = cadena
        }
      },
-   }
+     operandos: function(op){
+        switch(op){
+            case "+":
+                        operandos.operador = op
+                        switch(operandos.operadorAnt) {
+                            case "+":
+                                        operandos.numAnt = operandos.numAnt + parseFloat(display.innerHTML)
+                                        display.innerHTML = operandos.numAnt
+                                        operandos.operadorAnt = operandos.operador
+                                        acomodarDisplay()
+                                        break
+                             case "-":
+                                        operandos.numAnt = operandos.numAnt - parseFloat(display.innerHTML)
+                                        display.innerHTML = operandos.numAnt
+                                        operandos.operadorAnt = operandos.operador
+                                        acomodarDisplay()
+                                        break
+                            case "*":
+                                        operandos.numAnt = operandos.numAnt * parseFloat(display.innerHTML)
+                                        display.innerHTML = operandos.numAnt
+                                        operandos.operadorAnt = operandos.operador
+                                        acomodarDisplay()
+                                        break
+                            case "/":
+                                        operandos.numAnt = operandos.numAnt / parseFloat(display.innerHTML)
+                                        display.innerHTML = operandos.numAnt
+                                        operandos.operadorAnt = operandos.operador
+                                        acomodarDisplay()
+                                        break
+                        }
+
+                        break
+            case "-":
+                       operandos.operador = op
+                        switch(operandos.operadorAnt) {
+                            case "+":
+                                        operandos.numAnt = operandos.numAnt + parseFloat(display.innerHTML)
+                                        display.innerHTML = operandos.numAnt
+                                        operandos.operadorAnt = operandos.operador
+                                        acomodarDisplay()
+                                        break
+                             case "-":
+                                        operandos.numAnt = operandos.numAnt - parseFloat(display.innerHTML)
+                                        display.innerHTML = operandos.numAnt
+                                        operandos.operadorAnt = operandos.operador
+                                        acomodarDisplay()
+                                        break
+                            case "*":
+                                        operandos.numAnt = operandos.numAnt * parseFloat(display.innerHTML)
+                                        display.innerHTML = operandos.numAnt
+                                        operandos.operadorAnt = operandos.operador
+                                        acomodarDisplay()
+                                        break
+                            case "/":
+                                        operandos.numAnt = operandos.numAnt / parseFloat(display.innerHTML)
+                                        display.innerHTML = operandos.numAnt
+                                        operandos.operadorAnt = operandos.operador
+                                        acomodarDisplay()
+                                        break
+                        }
+
+                        break
+            case "*":
+                        operandos.operador = op
+                        switch(operandos.operadorAnt) {
+                            case "+":
+                                        operandos.numAnt = operandos.numAnt + parseFloat(display.innerHTML)
+                                        display.innerHTML = operandos.numAnt
+                                        operandos.operadorAnt = operandos.operador
+                                        acomodarDisplay()
+                                        break
+                             case "-":
+                                        operandos.numAnt = operandos.numAnt - parseFloat(display.innerHTML)
+                                        display.innerHTML = operandos.numAnt
+                                        operandos.operadorAnt = operandos.operador
+                                        acomodarDisplay()
+                                        break
+                            case "*":
+                                        operandos.numAnt = operandos.numAnt * parseFloat(display.innerHTML)
+                                        display.innerHTML = operandos.numAnt
+                                        operandos.operadorAnt = operandos.operador
+                                        acomodarDisplay()
+                                        break
+                            case "/":
+                                        operandos.numAnt = operandos.numAnt / parseFloat(display.innerHTML)
+                                        display.innerHTML = operandos.numAnt
+                                        operandos.operadorAnt = operandos.operador
+                                        acomodarDisplay()
+                                        break
+                        }
+
+                        break
+            case "/":
+                        operandos.operador = op
+                        if (operandos.operadorAnt.length > 0){
+                            operandos.numAnt = operandos.numAnt / parseFloat(display.innerHTML)
+                            display.innerHTML = operandos.numAnt
+                            acomodarDisplay()
+                        }
+
+                        break
+             case "=":
+                        switch(operandos.operadorAnt){
+                            case "+" :
+                                        operandos.numAnt += parseFloat(display.innerHTML)
+                                        break
+                            case "-" :
+                                        operandos.numAnt -= parseFloat(display.innerHTML)
+                                        break
+                             case "/" :
+                                        operandos.numAnt /= parseFloat(display.innerHTML)
+                                        break
+                             case "*" :
+                                        operandos.numAnt *= parseFloat(display.innerHTML)
+                                        break
+                        }
+                        display.innerHTML = operandos.numAnt
+                        acomodarDisplay()
+                        operandos.operadorAnt = ""
+                        operandos.operador = ""
+                        break
+        }
+
+    }
+}
+function acomodarDisplay(){
+    var cadena = display.innerHTML
+    var numero = parseFloat(cadena)
+    limite = 8
+    if (cadena.indexOf(".") != -1){
+        limite++
+    }
+    if (cadena.indexOf("-")!= -1){
+        limite++
+    }
+
+    if (cadena.length > limite){
+        if (numero - numero.toFixed(0) == 0){
+            display.innerHTML = numero
+        }
+         else {
+             display.innerHTML = parseFloat(cadena).toPrecision(8)
+         }
+
+    }
+  }
 
 calculadora.init()
